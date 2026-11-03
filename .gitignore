@@ -1,1 +1,25 @@
-node_modules
+# Dependencies
+/node_modules
+/vendor
+
+# Environment and secrets
+/.env
+/.env.*
+!/.env.example
+/auth.json
+
+# Laravel generated files
+/.phpunit.cache
+/.phpunit.result.cache
+/public/build
+/public/hot
+/storage/*.key
+
+# Logs and local runtime output
+*.log
+
+# Local editor files
+/.fleet
+/.idea
+/.nova
+/.vscode
