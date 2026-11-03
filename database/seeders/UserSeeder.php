@@ -12,8 +12,8 @@ class UserSeeder extends Seeder
     {
         $people = [
             ['Admin User', 'admin@mubs.ac.ug', 'Administrator'],
-            ['Dr. Lecturer One', 'lecturer1@mubs.ac.ug', 'Lecturer'],
-            ['Dr. Lecturer Two', 'lecturer2@mubs.ac.ug', 'Lecturer'],
+            ['Mr Samuel Ssendi', 'lecturer1@mubs.ac.ug', 'Lecturer'],
+            ['Mr Bukoma Sadat', 'lecturer2@mubs.ac.ug', 'Lecturer'],
         ];
         foreach ($people as [$name, $email, $role]) {
             User::firstOrCreate(['email' => $email], ['name' => $name, 'password' => Hash::make('password')])
