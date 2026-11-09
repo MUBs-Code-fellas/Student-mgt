@@ -19,8 +19,15 @@ class CourseSeeder extends Seeder
             ['BBC3213', 'Mobile App Development', $l2],
         ];
         foreach ($courses as [$code, $title, $lec]) {
-            Course::updateOrCreate(['code' => $code],
-                ['title' => $title, 'credits' => 3, 'lecturer_id' => $lec, 'description' => "$title course"]);
+            Course::updateOrCreate(
+                ['code' => $code],
+                [
+                    'title' => $title,
+                    'credits' => 3,
+                    'lecturer_id' => $lec,
+                    'description' => "$title course",
+                ],
+            );
         }
     }
 }

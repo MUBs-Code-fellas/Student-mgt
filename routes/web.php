@@ -6,8 +6,8 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->route('dashboard'));
-Route::get('/dashboard', fn () => view('dashboard'))->middleware('auth')->name('dashboard');
+Route::get('/', fn() => redirect()->route('dashboard'));
+Route::get('/dashboard', fn() => view('dashboard'))->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     // Breeze profile routes
@@ -23,18 +23,31 @@ Route::middleware('auth')->group(function () {
 
     // Course list for all roles (filtered by role inside the controller)
     Route::get('/courses', [CourseController::class, 'index'])
-        ->middleware('role_or_permission:Administrator|view courses|view assigned courses')->name('courses.index');
-    Route::get('/courses/{course}/students', [CourseController::class, 'students'])->name('courses.students');
+        ->middleware('role_or_permission:Administrator|view courses|view assigned courses')
+        ->name('courses.index');
+    Route::get('/courses/{course}/students', [CourseController::class, 'students'])->name(
+        'courses.students',
+    );
 
     // Registrations
-    Route::get('/registrations', [RegistrationController::class, 'index'])->name('registrations.index');
+    Route::get('/registrations', [RegistrationController::class, 'index'])->name(
+        'registrations.index',
+    );
     Route::middleware('permission:manage registrations')->group(function () {
-        Route::get('/registrations/create', [RegistrationController::class, 'create'])->name('registrations.create');
-        Route::post('/registrations', [RegistrationController::class, 'store'])->name('registrations.store');
+        Route::get('/registrations/create', [RegistrationController::class, 'create'])->name(
+            'registrations.create',
+        );
+        Route::post('/registrations', [RegistrationController::class, 'store'])->name(
+            'registrations.store',
+        );
     });
     Route::post('/courses/{course}/register', [RegistrationController::class, 'register'])
-        ->middleware('permission:register course')->name('courses.register');
-    Route::delete('/registrations/{registration}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');
+        ->middleware('permission:register course')
+        ->name('courses.register');
+    Route::delete('/registrations/{registration}', [
+        RegistrationController::class,
+        'destroy',
+    ])->name('registrations.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

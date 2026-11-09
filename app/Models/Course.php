@@ -8,7 +8,16 @@ class Course extends Model
 {
     protected $fillable = ['code', 'title', 'description', 'credits', 'lecturer_id'];
 
-    public function lecturer() { return $this->belongsTo(User::class, 'lecturer_id'); }
-    public function registrations() { return $this->hasMany(Registration::class); }
-    public function students() { return $this->belongsToMany(Student::class, 'registrations')->withTimestamps(); }
+    public function lecturer()
+    {
+        return $this->belongsTo(User::class, 'lecturer_id');
+    }
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'registrations')->withTimestamps();
+    }
 }

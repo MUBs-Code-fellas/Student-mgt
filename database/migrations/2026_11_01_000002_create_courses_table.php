@@ -17,5 +17,8 @@ return new class extends Migration {
             $t->timestamps();
         });
     }
-    public function down(): void { Schema::dropIfExists('courses'); }
+    public function down(): void
+    {
+        Schema::dropIfExists('courses');
+    }
 };

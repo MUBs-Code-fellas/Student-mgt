@@ -2,7 +2,4 @@
 
 use App\Providers\AppServiceProvider;
 
-return [
-    AppServiceProvider::class,
-    Spatie\Permission\PermissionServiceProvider::class,
-];
+return [AppServiceProvider::class, Spatie\Permission\PermissionServiceProvider::class];

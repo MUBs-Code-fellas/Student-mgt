@@ -22,14 +22,16 @@ class AuthenticatedSessionController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'email'    => ['required', 'email'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+        if (!Auth::attempt($credentials, $request->boolean('remember'))) {
+            return back()
+                ->withErrors([
+                    'email' => 'The provided credentials do not match our records.',
+                ])
+                ->onlyInput('email');
         }
 
         $request->session()->regenerate();

@@ -1,7 +1,5 @@
 {
-    "agents": [
-        "cursor"
-    ],
+    "agents": ["cursor"],
     "mcp": true,
     "nightwatch": false,
     "sail": false

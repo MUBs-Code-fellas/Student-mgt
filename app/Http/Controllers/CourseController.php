@@ -23,10 +23,16 @@ class CourseController extends Controller
             $registeredIds = $user->student->courses()->pluck('courses.id');
         }
 
-        return view('courses.index', ['courses' => $query->paginate(10), 'registeredIds' => $registeredIds]);
+        return view('courses.index', [
+            'courses' => $query->paginate(10),
+            'registeredIds' => $registeredIds,
+        ]);
     }
 
-    public function create() { return view('courses.create', ['lecturers' => User::role('Lecturer')->get()]); }
+    public function create()
+    {
+        return view('courses.create', ['lecturers' => User::role('Lecturer')->get()]);
+    }
 
     public function store(Request $request)
     {
@@ -36,7 +42,10 @@ class CourseController extends Controller
 
     public function edit(Course $course)
     {
-        return view('courses.edit', ['course' => $course, 'lecturers' => User::role('Lecturer')->get()]);
+        return view('courses.edit', [
+            'course' => $course,
+            'lecturers' => User::role('Lecturer')->get(),
+        ]);
     }
 
     public function update(Request $request, Course $course)
@@ -61,7 +70,12 @@ class CourseController extends Controller
     private function validated(Request $r, $id = null): array
     {
         return $r->validate([
-            'code' => ['required', 'string', 'max:20', Rule::unique('courses', 'code')->ignore($id)],
+            'code' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('courses', 'code')->ignore($id),
+            ],
             'title' => 'required|string|max:150',
             'description' => 'nullable|string',
             'credits' => 'required|integer|min:1|max:10',

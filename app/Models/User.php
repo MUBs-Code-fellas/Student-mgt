@@ -19,7 +19,13 @@ class User extends Authenticatable
         return ['email_verified_at' => 'datetime', 'password' => 'hashed'];
     }
 
-    public function student() { return $this->hasOne(Student::class); }
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
     // courses taught by this user (lecturer)
-    public function courses() { return $this->hasMany(Course::class, 'lecturer_id'); }
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'lecturer_id');
+    }
 }

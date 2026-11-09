@@ -16,12 +16,16 @@ class UserSeeder extends Seeder
             ['Mr Bukoma Sadat', 'lecturer2@mubs.ac.ug', 'Lecturer'],
         ];
         foreach ($people as [$name, $email, $role]) {
-            User::firstOrCreate(['email' => $email], ['name' => $name, 'password' => Hash::make('password')])
-                ->syncRoles([$role]);
+            User::firstOrCreate(
+                ['email' => $email],
+                ['name' => $name, 'password' => Hash::make('password')],
+            )->syncRoles([$role]);
         }
         for ($i = 1; $i <= 5; $i++) {
-            User::firstOrCreate(['email' => "student$i@mubs.ac.ug"],
-                ['name' => "Student $i", 'password' => Hash::make('password')])->syncRoles(['Student']);
+            User::firstOrCreate(
+                ['email' => "student$i@mubs.ac.ug"],
+                ['name' => "Student $i", 'password' => Hash::make('password')],
+            )->syncRoles(['Student']);
         }
     }
 }

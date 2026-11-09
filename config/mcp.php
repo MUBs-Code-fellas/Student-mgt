@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Redirect Domains
@@ -97,5 +96,4 @@ return [
             'args' => ['-y', '@playwright/mcp@latest', '--headless'],
         ],
     ],
-
 ];

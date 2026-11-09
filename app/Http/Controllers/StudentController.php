@@ -12,19 +12,30 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('students.index', ['students' => Student::withCount('courses')->orderBy('student_number')->paginate(10)]);
+        return view('students.index', [
+            'students' => Student::withCount('courses')->orderBy('student_number')->paginate(10),
+        ]);
     }
 
-    public function create() { return view('students.create'); }
+    public function create()
+    {
+        return view('students.create');
+    }
 
     public function store(StoreStudentRequest $request)
     {
         DB::transaction(function () use ($request) {
-            $user = User::create(['name' => $request->name, 'email' => $request->email, 'password' => Hash::make('password')]);
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make('password'),
+            ]);
             $user->assignRole('Student');
             Student::create($request->validated() + ['user_id' => $user->id]);
         });
-        return redirect()->route('students.index')->with('success', 'Student created (default password: password).');
+        return redirect()
+            ->route('students.index')
+            ->with('success', 'Student created (default password: password).');
     }
 
     public function show(Student $student)
@@ -32,7 +43,10 @@ class StudentController extends Controller
         return view('students.show', ['student' => $student->load('courses')]);
     }
 
-    public function edit(Student $student) { return view('students.edit', compact('student')); }
+    public function edit(Student $student)
+    {
+        return view('students.edit', compact('student'));
+    }
 
     public function update(StoreStudentRequest $request, Student $student)
     {

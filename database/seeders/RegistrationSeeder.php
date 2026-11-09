@@ -12,7 +12,12 @@ class RegistrationSeeder extends Seeder
     {
         $courses = Course::all();
         foreach (Student::all() as $i => $student) {
-            $student->courses()->syncWithoutDetaching($courses->slice($i % 3, 2)->pluck('id')->all());
+            $student->courses()->syncWithoutDetaching(
+                $courses
+                    ->slice($i % 3, 2)
+                    ->pluck('id')
+                    ->all(),
+            );
         }
     }
 }

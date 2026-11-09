@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Boost Master Switch
@@ -106,6 +105,8 @@ return [
     |
     */
 
-    'browser_log_levels' => explode(',', env('BOOST_BROWSER_LOG_LEVELS', 'error,warning,info,debug')),
-
+    'browser_log_levels' => explode(
+        ',',
+        env('BOOST_BROWSER_LOG_LEVELS', 'error,warning,info,debug'),
+    ),
 ];

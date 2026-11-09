@@ -15,5 +15,8 @@ return new class extends Migration {
             $t->unique(['student_id', 'course_id']); // prevents duplicate registrations
         });
     }
-    public function down(): void { Schema::dropIfExists('registrations'); }
+    public function down(): void
+    {
+        Schema::dropIfExists('registrations');
+    }
 };
